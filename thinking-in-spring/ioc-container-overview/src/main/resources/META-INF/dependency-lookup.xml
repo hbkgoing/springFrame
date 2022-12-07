@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- services -->
+
+    <bean id="user" class="com.hook.domain.User">
+        <property name="id" value="001"/>
+        <property name="name" value="jack"/>
+    </bean>
+
+    <bean id="objectFactory" class="org.springframework.beans.factory.config.ObjectFactoryCreatingFactoryBean">
+        <property name="targetBeanName" value="user"/>
+    </bean>
+
+
+<!--    配置两个IService的bean-->
+
+<!--    不能使用接口配置bean-->
+    <bean id="one" class="com.hook.template.impl.OneService">
+
+    </bean>
+    <bean id="two" class="com.hook.template.impl.TwoService">
+
+    </bean>
+
+    <bean id="superUser" class="com.hook.domain.SuperUser" parent="user">
+        <property name="address" value="南京"/>
+    </bean>
+</beans>
+
